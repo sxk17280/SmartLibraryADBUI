@@ -1,0 +1,12 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-toolbar
+  {
+      
+    color: white;
+    background: black;
+  }
+  .m-right{
+    margin-right: 48px;
+  }

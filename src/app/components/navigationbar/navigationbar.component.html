@@ -1,0 +1,45 @@
+<p>
+  <mat-toolbar>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        routerLink="/products"
+        >home</mat-icon
+      >
+    </button> -->
+
+    <span>Smart Library</span>
+    <span><a mat-button routerLink="//homepage">Books</a>
+      <!-- <a mat-button routerLink="/products">Checkouts</a> -->
+      <!-- <a mat-button routerLink="/app-work-board">Work Board</a> -->
+    </span>
+    <span class="example-spacer"></span>
+    <div style="display: flex">
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <!-- <mat-icon>favorite</mat-icon><span>{{ wishList.length }}</span> -->
+      </button>
+      <!-- <a routerLink="/cart" style="color: white">
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/cart-list">
+          <mat-icon>add_shopping_cart</mat-icon
+          >
+           <span>{{ this.cartProducts.length }}</span> 
+        </button></a> -->
+
+      <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" routerLink="/login-signup">
+        <mat-icon>account_circle</mat-icon>
+      </button> -->
+      <!-- <button  mat-icon-button  *ngIf="!!currentUser&&!!currentUser.isAdmin"   class="example-icon" aria-label="Example icon-button with share icon" routerLink="/addUser">
+        Add user
+      </button> -->
+      <button mat-icon-button *ngIf="this.isAdmin" class="example-icon m-right"
+        aria-label="Example icon-button with share icon" routerLink="/addUser">
+        Add user
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()"
+        routerLink="/login">
+        logout
+      </button>
+    </div>
+  </mat-toolbar>
+</p>
