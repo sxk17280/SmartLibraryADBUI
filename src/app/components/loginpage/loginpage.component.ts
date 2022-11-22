@@ -32,10 +32,13 @@ export class LoginpageComponent implements OnInit {
       this.sharedService.login(model)
         .subscribe(
           result => {
-            localStorage.setItem('token', result.token);
-            this.sharedService.currentUserData = result.userDetails;
-            localStorage.setItem('currentuserData', JSON.stringify(result.userDetails));
-            this.router.navigateByUrl('/homepage');
+            if(!!result){
+              localStorage.setItem('token', result.token);
+              this.sharedService.currentUserData = result.userDetails;
+              localStorage.setItem('currentuserData', JSON.stringify(result.userDetails));
+              this.router.navigateByUrl('/homepage');
+            }
+            
           },
           error => {
             this._snackBar.open('Incorrect email/password', 'Dismiss', {
