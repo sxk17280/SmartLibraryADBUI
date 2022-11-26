@@ -24,8 +24,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { sharedService } from './services/sharedservice.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AuthorsComponent } from './components/authors/authors.component';
+import { UsersComponent } from './components/users/users.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.component';
 
-
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HomepageComponent,
     NavigationbarComponent,
     AdduserComponent,
-    BooksComponent
+    BooksComponent,
+    AuthorsComponent,
+    UsersComponent,
+    CategoriesComponent,
+    IssuedbooksComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +61,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,MatTableModule
   ],
   providers: [sharedService],
   bootstrap: [AppComponent]

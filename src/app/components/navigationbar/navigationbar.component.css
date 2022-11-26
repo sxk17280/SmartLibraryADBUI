@@ -5,8 +5,11 @@
   {
       
     color: white;
-    background: black;
+    background: #0096FF;
   }
   .m-right{
     margin-right: 48px;
+  }
+  .m-l-10{
+    margin-left: 10px;
   }

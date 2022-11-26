@@ -65,9 +65,9 @@ export class BooksComponent implements OnInit {
       var res = x;
       res.forEach(element => {
         if (!element.isAdmin) {
-          if (!!element.booksIssued) {
+       //  if (!!element.booksIssued) {
             this.users.push(element);
-          }
+        //  }
         }
       });
     })
@@ -115,7 +115,6 @@ export class BooksComponent implements OnInit {
   }
   checkIn(book) {
     if (!!this.currentSelecteduser) {
-      if (!!this.currentSelecteduser.booksIssued && this.currentSelecteduser.booksIssued.length < 3) {
         var model = {
           BookId: book.bookId,
           UserId: this.currentSelecteduser.userId,
@@ -126,7 +125,7 @@ export class BooksComponent implements OnInit {
           Status: 'Not Available'
         };
         this.sharedService.checkIn(model).subscribe(x => {
-          // if(!!x){
+          if(!!x){
           this._snackBar.open('CheckedIn Successfully', 'Dismiss', {
             duration: 2000,
           });
@@ -139,14 +138,14 @@ export class BooksComponent implements OnInit {
           }
           this.selectedUserName = '';
           this.currentSelecteduser = undefined;
-          // }
-        })
-      }
-      else {
-        this._snackBar.open('Already 3 books taken', 'Dismiss', {
-          duration: 2000,
-        });
-      }
+          }
+        },
+        error => {
+          this._snackBar.open('LIMIT_EXCEEDED', 'Dismiss', {
+            duration: 2000,
+          });
+        },)
+   
     }
     else {
       this._snackBar.open('select user', 'Dismiss', {

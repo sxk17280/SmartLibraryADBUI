@@ -18,7 +18,7 @@ export class sharedService{
     currentUserData:any;
     host='https://localhost:7032/';
     public login(loginData:loginVm):Observable<any>{
-        let url=this.host+"api/User";
+        let url=this.host+"api/User/login";
         return this.http.post(url,loginData);
     }
     public addUser(loginData):Observable<any>{
@@ -56,4 +56,22 @@ export class sharedService{
         let url=this.host+"api/User/Getuser?id="+id;
         return this.http.get(url);
     }
+    getAuthors():Observable<any>{
+        let url=this.host+"api/Author";
+        return this.http.get(url);
+    }
+    getBookCategory():Observable<any>{
+        let url=this.host+"api/BookCategory";
+        return this.http.get(url);
+    }
+    adminIssuedBooks():Observable<any>{
+        let url=this.host+"api/Books/adminIssuedBooks";
+        return this.http.get(url);
+    }
+    
+    userIssuedBooks(id):Observable<any>{
+        let url=this.host+"api/Books/userIssuedBooks?userId="+id;
+        return this.http.get(url);
+    }
+   
 }
