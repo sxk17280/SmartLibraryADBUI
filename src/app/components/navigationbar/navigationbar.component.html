@@ -1,6 +1,6 @@
 <p>
   <mat-toolbar>
-    <span><a mat-button routerLink="/homepage">Smart Library</a></span>
+    <h3><a mat-button routerLink="/homepage">Smart Library</a></h3>
     <span class="m-l-10">
   
        <a mat-button routerLink="/users">Users</a> 
@@ -10,7 +10,7 @@
     </span>
     <span class="example-spacer"></span>
     <div style="display: flex">
-      <span class="m-l-10"><a mat-button>Fine :100$</a>
+      <span class="m-l-10"><a mat-button>Fine :{{fine}}$</a>
         </span>
       <!-- <button mat-icon-button *ngIf="this.isAdmin" class="example-icon m-right"
         aria-label="Example icon-button with share icon" routerLink="/addUser">

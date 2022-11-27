@@ -28,8 +28,9 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { UsersComponent } from './components/users/users.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.component';
-
+import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
+import { AddbookComponent } from './components/addbook/addbook.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import {MatTableModule} from '@angular/material/table';
     AuthorsComponent,
     UsersComponent,
     CategoriesComponent,
-    IssuedbooksComponent
+    IssuedbooksComponent,
+    AddbookComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatSlideToggleModule,MatTableModule
+    MatSlideToggleModule,MatTableModule,MatMenuModule
   ],
   providers: [sharedService],
   bootstrap: [AppComponent]

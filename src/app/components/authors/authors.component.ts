@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { sharedService } from 'src/app/services/sharedservice.service';
 
 @Component({
@@ -10,7 +11,9 @@ export class AuthorsComponent implements OnInit {
   displayedColumns: string[] = ['authorId', 'name'];
   dataSourceAuthors =[] ;
   showTable=false;
-  
+  authorName = '';
+
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   constructor(private sharedService: sharedService) { }
 
   ngOnInit(): void {
@@ -19,5 +22,11 @@ export class AuthorsComponent implements OnInit {
       this.showTable=true;
     })
   }
-
+  addAuthor() {
+    this.trigger.closeMenu();
+    this.sharedService.addAuthor(this.authorName).subscribe(x => {
+      this.authorName = '';
+      this.ngOnInit();
+    })
+  }
 }

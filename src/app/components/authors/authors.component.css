@@ -5,5 +5,13 @@ table {
   .main-table{
     width: 100%;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .table-mi{
+    margin-left: 94px;
+  }
+  .float-right{
+    float:right;
   }

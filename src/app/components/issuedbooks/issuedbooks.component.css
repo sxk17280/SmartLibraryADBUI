@@ -1,0 +1,12 @@
+table {
+    width: 80%;
+  }
+
+  .main-table{
+    width: 100%;
+    display: flex;
+    justify-content: space-around
+  }
+  .m-r-10{
+    margin-right: 10px;
+  }

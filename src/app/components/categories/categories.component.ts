@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { sharedService } from 'src/app/services/sharedservice.service';
 
 @Component({
@@ -9,15 +10,22 @@ import { sharedService } from 'src/app/services/sharedservice.service';
 export class CategoriesComponent implements OnInit {
 
   displayedColumns: string[] = ['categoryId', 'categoryName'];
-  dataSourceCategories =[] ;
-  showTable=false;
-  
+  dataSourceCategories = [];
+  showTable = false;
+  categoryName = '';
   constructor(private sharedService: sharedService) { }
-
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   ngOnInit(): void {
-    this.sharedService.getBookCategory().subscribe(x=>{
-      this.dataSourceCategories=x;
-      this.showTable=true;
+    this.sharedService.getBookCategory().subscribe(x => {
+      this.dataSourceCategories = x;
+      this.showTable = true;
+    })
+  }
+  addCategory() {
+    this.trigger.closeMenu();
+    this.sharedService.addcategory(this.categoryName).subscribe(x => {
+      this.categoryName = '';
+      this.ngOnInit();
     })
   }
 }

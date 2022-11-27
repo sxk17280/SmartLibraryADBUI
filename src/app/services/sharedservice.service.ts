@@ -14,6 +14,10 @@ export class sharedService{
               .set('Authorization', 'Bearer ' + token)
               .set('Content-Type', 'application/json'); 
         }
+        if(localStorage.getItem('currentuserData')!=''){
+            var userData=localStorage.getItem('currentuserData');
+            this.currentUserData= JSON.parse(userData);
+        }
     }
     currentUserData:any;
     host='https://localhost:7032/';
@@ -73,5 +77,17 @@ export class sharedService{
         let url=this.host+"api/Books/userIssuedBooks?userId="+id;
         return this.http.get(url);
     }
-   
+    
+    addcategory(name):Observable<any>{
+        let url=this.host+"api/author/Addcategory?name="+name;
+        return this.http.get(url);
+    }
+    addAuthor(name):Observable<any>{
+        let url=this.host+"api/author/AddAuthor?name="+name;
+        return this.http.get(url);
+    }
+    addBook(model):Observable<any>{
+        let url=this.host+"api/Books/AddBook";
+        return this.http.post(url,model,this.headers);
+    }
 }

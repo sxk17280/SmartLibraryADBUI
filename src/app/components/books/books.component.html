@@ -2,10 +2,9 @@
   <div class="navbar">
     <app-navigationbar></app-navigationbar>
   </div>
-  <!-- <div *ngIf="!isAdmin">
-    <mat-slide-toggle style="float:right;margin: 10px;" ngModel name="showMyBooks" (change)="toggleChanged($event)">
-      {{showBooksMessage}}</mat-slide-toggle>
-  </div> -->
+  <div *ngIf="isAdmin">
+     <button mat-raised-button class="float-right addbtn" color="primary"> <mat-icon>add_circle</mat-icon><a mat-button routerLink="/addBook">Add Book</a>      </button>
+  </div>
 
   <div class="products-div">
     <div *ngFor="let book of books" class="book-div">

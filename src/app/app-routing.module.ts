@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddbookComponent } from './components/addbook/addbook.component';
 import { AdduserComponent } from './components/adduser/adduser.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { BooksComponent } from './components/books/books.component';
@@ -18,6 +19,8 @@ const routes: Routes = [{ path: '', component: LoginpageComponent, pathMatch: 'f
 { path: 'users', component: UsersComponent },
 { path: 'categories', component: CategoriesComponent },
 { path: 'issuedBooks', component: IssuedbooksComponent },
+{ path: 'addBook', component: AddbookComponent },
+
 ];
 
 @NgModule({
