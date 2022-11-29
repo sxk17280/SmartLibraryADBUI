@@ -3,7 +3,9 @@
     <app-navigationbar></app-navigationbar>
   </div>
   <div *ngIf="isAdmin">
-     <button mat-raised-button class="float-right addbtn" color="primary"> <mat-icon>add_circle</mat-icon><a mat-button routerLink="/addBook">Add Book</a>      </button>
+    <button mat-raised-button class="float-right addbtn" color="primary">
+      <mat-icon>add_circle</mat-icon><a mat-button routerLink="/addBook">Add Book</a>
+    </button>
   </div>
 
   <div class="products-div">
@@ -18,7 +20,7 @@
                   id="IMG_6" src="{{book.image}}">
               </figure>
               <div id="DIV_7">
-                <h2 id="H2_8">
+                <h2 id="H2_8" class="txt-elipsis">
                   {{book.title}}
                 </h2>
                 <span id="SPAN_9">
@@ -29,9 +31,8 @@
                   <a id="A_19"
                     ng-click="showFullData('059655558X','http://books.google.co.in/books?id=1PgCCVryjOQC&amp;printsec=frontcover&amp;dq=isbn:059655558X&amp;hl=&amp;cd=1&amp;source=gbs_api','basic');"><span
                       class="f_detail">{{book.category}}</span></a>
-                  <a class="A_20" href="" style="background: green;
-color: white;"><span class="f_available">{{book.status}}</span>
-                    (1)</a>
+                  <a class="A_20" href="#"><span class="f_available">{{book.status}}</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -42,7 +43,7 @@ color: white;"><span class="f_available">{{book.status}}</span>
             <div *ngIf="isAdmin">
               <mat-form-field appearance="outline" class="users-list">
                 <mat-label>Select User</mat-label>
-                <mat-select (selectionChange)="selectUser($event)">
+                <mat-select (selectionChange)="selectUser(book,$event)">
                   <mat-option *ngFor="let user of users" [value]="user.userId">
                     {{user.firstName}}
                   </mat-option>
@@ -50,7 +51,7 @@ color: white;"><span class="f_available">{{book.status}}</span>
               </mat-form-field>
             </div>
             <div style="margin-bottom: 19px;">
-              <button mat-raised-button color="primary" *ngIf="book.isAvailable" (click)="checkIn(book)">Issue</button>
+              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">Issue</button>
             </div>
           </div>
         </div>
