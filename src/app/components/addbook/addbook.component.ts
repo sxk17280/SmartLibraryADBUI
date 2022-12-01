@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BookVm } from 'src/app/models/bookvm';
 import { sharedService } from 'src/app/services/sharedservice.service';
 @Component({
   selector: 'app-addbook',
@@ -12,16 +13,24 @@ export class AddbookComponent implements OnInit {
   BookId = ''
   Title = ''
   Description = ''
-  Image = ''
+  Image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2RRMohOPT2dPUjeqzcsnnow1Os5CRJ0Ket5Nes8xik3Na_RbAM8MDq1IWcpPE_H0MzwA&usqp=CAU'
   ISBN = ''
   Category = ''
-  PublishedYear = ''
+  PublishedYear:any
   Author = ''
-  isAvailable = ''
+  isAvailable = true
+  categories=[];
+  authors=[];
   ngOnInit(): void {
+    this.sharedService.getBookCategory().subscribe(x => {
+      this.categories= x.map(x=>x.categoryName);
+    })
+    this.sharedService.getAuthors().subscribe(x=>{
+      this.authors=x.map(x=>x.name);
+    })
   }
   addBook() {
-    var model = {
+    var model:BookVm = {
       BookId: this.BookId,
       Title: this.Title,
       Description: this.Description,
@@ -34,7 +43,12 @@ export class AddbookComponent implements OnInit {
 
     }
     this.sharedService.addBook(model).subscribe(x => {
-      this._snackBar.open("user added");
+      this._snackBar.open("Book added");
+    },error => {
+      this._snackBar.open('Some thing went wrong', 'Dismiss', {
+        duration: 2000,
+      });
     })
+   
   }
 }

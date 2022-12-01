@@ -78,16 +78,21 @@ export class sharedService{
         return this.http.get(url);
     }
     
-    addcategory(name):Observable<any>{
-        let url=this.host+"api/author/Addcategory?name="+name;
-        return this.http.get(url);
+    addcategory(model):Observable<any>{
+        let url=this.host+"api/author";
+        return this.http.post(url,model,this.headers);
+
     }
-    addAuthor(name):Observable<any>{
-        let url=this.host+"api/author/AddAuthor?name="+name;
-        return this.http.get(url);
+    addAuthor(model):Observable<any>{
+        let url=this.host+"api/author";
+        return this.http.post(url,model,this.headers);
     }
     addBook(model):Observable<any>{
-        let url=this.host+"api/Books/AddBook";
+        let url=this.host+"api/Books";
         return this.http.post(url,model,this.headers);
+    }
+    getDashBoardData(){
+        let url=this.host+"api/Books/dashboard";
+        return this.http.get(url);
     }
 }

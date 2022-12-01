@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { sharedService } from 'src/app/services/sharedservice.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AuthorsComponent implements OnInit {
   authorName = '';
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-  constructor(private sharedService: sharedService) { }
+  constructor(private sharedService: sharedService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.sharedService.getAuthors().subscribe(x=>{
@@ -24,9 +25,20 @@ export class AuthorsComponent implements OnInit {
   }
   addAuthor() {
     this.trigger.closeMenu();
-    this.sharedService.addAuthor(this.authorName).subscribe(x => {
+    var model={
+      Id:0,
+      AuthorId:this.dataSourceAuthors.length+1,
+      Name:this.authorName
+    }
+    this.sharedService.addAuthor(model).subscribe(x => {
       this.authorName = '';
+      this._snackBar.open("Author added");
       this.ngOnInit();
-    })
+    },
+    error => {
+      this._snackBar.open('Some thing went wrong', 'Dismiss', {
+        duration: 2000,
+      });
+    },)
   }
 }

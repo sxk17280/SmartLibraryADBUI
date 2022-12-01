@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { sharedService } from 'src/app/services/sharedservice.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   dataSourceCategories = [];
   showTable = false;
   categoryName = '';
-  constructor(private sharedService: sharedService) { }
+  constructor(private sharedService: sharedService,private _snackBar: MatSnackBar) { }
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   ngOnInit(): void {
     this.sharedService.getBookCategory().subscribe(x => {
@@ -23,9 +24,19 @@ export class CategoriesComponent implements OnInit {
   }
   addCategory() {
     this.trigger.closeMenu();
-    this.sharedService.addcategory(this.categoryName).subscribe(x => {
+    var model={
+      Id:0,
+      CategoryId:this.dataSourceCategories.length+1,
+      CategoryName:this.categoryName
+    }
+    this.sharedService.addcategory(model).subscribe(x => {
       this.categoryName = '';
       this.ngOnInit();
-    })
+      this._snackBar.open("category added");
+    },error => {
+      this._snackBar.open('Some thing went wrong', 'Dismiss', {
+        duration: 2000,
+      });
+    },)
   }
 }

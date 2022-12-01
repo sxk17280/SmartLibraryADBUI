@@ -1,6 +1,6 @@
 <p>
   <mat-toolbar>
-    <h1><a mat-button routerLink="/homepage"></a>Smart Library Manager</h1>
+    <h1  routerLink="/homepage" class="pointer"><a mat-button></a>Smart Library Manager</h1>
     <span class="m-l-10">
   
        <a mat-button routerLink="/users" *ngIf="this.isAdmin">Users</a> 
@@ -16,7 +16,7 @@
         aria-label="Example icon-button with share icon" routerLink="/addUser">
         Add user
       </button> -->
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()"
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon pointer" (click)="logout()"
         routerLink="/login">
         Logout
       </button>
