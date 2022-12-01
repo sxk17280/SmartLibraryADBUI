@@ -13,7 +13,7 @@ export class AddbookComponent implements OnInit {
   BookId = ''
   Title = ''
   Description = ''
-  Image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2RRMohOPT2dPUjeqzcsnnow1Os5CRJ0Ket5Nes8xik3Na_RbAM8MDq1IWcpPE_H0MzwA&usqp=CAU'
+  Image = 'https://img.freepik.com/premium-vector/book-cartoon_22350-95.jpg?w=2000'
   ISBN = ''
   Category = ''
   PublishedYear:any
