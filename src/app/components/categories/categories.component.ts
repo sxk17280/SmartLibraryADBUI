@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   addCategory() {
     this.trigger.closeMenu();
     var model={
-      Id:0,
+      Id:'0',
       CategoryId:this.dataSourceCategories.length+1,
       CategoryName:this.categoryName
     }

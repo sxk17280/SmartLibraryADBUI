@@ -26,7 +26,7 @@ export class sharedService{
         return this.http.post(url,loginData);
     }
     public addUser(loginData):Observable<any>{
-        let url=this.host+"api/user/AddUser";
+        let url=this.host+"api/user";
         return this.http.post(url,loginData);
     }
     getBooks():Observable<any>{
@@ -79,7 +79,7 @@ export class sharedService{
     }
     
     addcategory(model):Observable<any>{
-        let url=this.host+"api/author";
+        let url=this.host+"api/BookCategory";
         return this.http.post(url,model,this.headers);
 
     }
