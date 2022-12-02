@@ -3,17 +3,12 @@
 </div>
 <div *ngIf="showTable" class="main-table">
   <div class="float-right" >
-    <button mat-raised-button class="float-right" [matMenuTriggerFor]="menu" color="primary"> <mat-icon>add_circle</mat-icon> Addcategory</button>
-    <mat-menu #menu="matMenu" style="width: 93%">
+    <button mat-raised-button class="float-right" (click)="openDialog()" color="primary"> <mat-icon>add_circle</mat-icon> Addcategory</button>
+    <!-- <mat-menu #menu="matMenu" style="width: 93%">
       <div (click)="$event.stopPropagation();">
-        <mat-form-field class="example-full-width" appearance="outline" style="margin-left:15px">
-          <mat-label>Category Name</mat-label>
-          <input matInput [(ngModel)]="categoryName" placeholder="Category Name"
-              [ngModelOptions]="{standalone: true}">
-      </mat-form-field>
-        <button style="margin: 14px" mat-raised-button class="float-right" color="primary" (click)="addCategory()">Save</button>
+       
       </div>
-    </mat-menu>
+    </mat-menu> -->
   </div>
   <table mat-table [dataSource]="dataSourceCategories" class="mat-elevation-z8 table-mi">
     <ng-container matColumnDef="categoryId">

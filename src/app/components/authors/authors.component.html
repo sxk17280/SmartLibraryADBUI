@@ -3,8 +3,8 @@
 </div>
     <div *ngIf="showTable" class="main-table">
       <div class="float-right" >
-        <button mat-raised-button class="float-right" style="margin-right:10px" [matMenuTriggerFor]="menu" color="primary"> <mat-icon>add_circle</mat-icon> AddAuthor</button>
-        <mat-menu #menu="matMenu" style="width: 93%">
+        <button mat-raised-button class="float-right" style="margin-right:10px" (click)="openDialog()" color="primary"> <mat-icon>add_circle</mat-icon> AddAuthor</button>
+        <!-- <mat-menu #menu="matMenu" style="width: 93%">
           <div (click)="$event.stopPropagation();">
             <mat-form-field class="example-full-width" appearance="outline" style="margin-left:15px">
               <mat-label>Author Name</mat-label>
@@ -13,7 +13,7 @@
           </mat-form-field>
             <button style="margin: 14px" mat-raised-button class="float-right" color="primary" (click)="addAuthor()">Save</button>
           </div>
-        </mat-menu>
+        </mat-menu> -->
       </div>
         <table mat-table [dataSource]="dataSourceAuthors" class="mat-elevation-z8 table-mi">
             <ng-container matColumnDef="authorId">

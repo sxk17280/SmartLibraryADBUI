@@ -31,6 +31,9 @@ import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.compo
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import { AddbookComponent } from './components/addbook/addbook.component';
+import { AuthordialogComponent } from './components/authordialog/authordialog.component';
+import { CategorydialogComponent } from './components/categorydialog/categorydialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { AddbookComponent } from './components/addbook/addbook.component';
     UsersComponent,
     CategoriesComponent,
     IssuedbooksComponent,
-    AddbookComponent
+    AddbookComponent,
+    AuthordialogComponent,
+    CategorydialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { AddbookComponent } from './components/addbook/addbook.component';
     HttpClientModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatSlideToggleModule,MatTableModule,MatMenuModule
+    MatSlideToggleModule,MatTableModule,MatMenuModule,MatDialogModule
+    
   ],
   providers: [sharedService],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { sharedService } from 'src/app/services/sharedservice.service';
+import { CategorydialogComponent } from '../categorydialog/categorydialog.component';
 
 @Component({
   selector: 'app-categories',
@@ -14,7 +16,7 @@ export class CategoriesComponent implements OnInit {
   dataSourceCategories = [];
   showTable = false;
   categoryName = '';
-  constructor(private sharedService: sharedService,private _snackBar: MatSnackBar) { }
+  constructor(private sharedService: sharedService,private _snackBar: MatSnackBar,public dialog: MatDialog) { }
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   ngOnInit(): void {
     this.sharedService.getBookCategory().subscribe(x => {
@@ -22,8 +24,17 @@ export class CategoriesComponent implements OnInit {
       this.showTable = true;
     })
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategorydialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.categoryName = result;
+      this.addCategory()
+    });
+  }
   addCategory() {
-    this.trigger.closeMenu();
     var model={
       Id:'0',
       CategoryId:this.dataSourceCategories.length+1,
