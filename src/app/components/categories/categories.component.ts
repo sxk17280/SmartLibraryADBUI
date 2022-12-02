@@ -32,7 +32,9 @@ export class CategoriesComponent implements OnInit {
     this.sharedService.addcategory(model).subscribe(x => {
       this.categoryName = '';
       this.ngOnInit();
-      this._snackBar.open("category added");
+      this._snackBar.open("category added",'Dismiss', {
+        duration: 2000,
+      });
     },error => {
       this._snackBar.open('Some thing went wrong', 'Dismiss', {
         duration: 2000,

@@ -28,6 +28,5 @@ export class UsersComponent implements OnInit {
   }
   addUser(){
     this.router.navigateByUrl('/addUser');
-
   }
 }

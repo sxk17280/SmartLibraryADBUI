@@ -36,6 +36,9 @@ export class AdduserComponent implements OnInit {
     this.sharedService.addUser(newUser).subscribe(res => {
       console.log(res);
       this._snackBar.open("user added");
+      setTimeout(x=>{
+        window.location.reload()
+      },1500)
     })
   }
 }

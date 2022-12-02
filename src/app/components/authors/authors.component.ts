@@ -32,7 +32,9 @@ export class AuthorsComponent implements OnInit {
     }
     this.sharedService.addAuthor(model).subscribe(x => {
       this.authorName = '';
-      this._snackBar.open("Author added");
+      this._snackBar.open("Author added",'Dismiss', {
+        duration: 2000,
+      });
       this.ngOnInit();
     },
     error => {

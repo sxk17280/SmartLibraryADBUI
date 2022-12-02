@@ -44,9 +44,12 @@ export class AddbookComponent implements OnInit {
     }
     this.sharedService.addBook(model).subscribe(x => {
       this._snackBar.open("Book added");
+      setTimeout(x=>{
+        window.location.reload()
+      },1500)
     },error => {
       this._snackBar.open('Some thing went wrong', 'Dismiss', {
-        duration: 2000,
+        duration: 1500,
       });
     })
    

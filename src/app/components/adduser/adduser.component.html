@@ -54,12 +54,12 @@
                 <div class="col-sm-6 w-100">
                     <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput [(ngModel)]="password" placeholder="Password"
+                        <input type="password" matInput [(ngModel)]="password" placeholder="Password"
                             [ngModelOptions]="{standalone: true}">
                     </mat-form-field>
                 </div>
             </div>
-            <button mat-raised-button color="primary" style="float:right"  (click)="addUser()" routerLink='/homepage'>Save</button>
+            <button mat-raised-button color="primary" style="float:right"  (click)="addUser()" >Save</button>
         </div>
 
     </mat-card>
