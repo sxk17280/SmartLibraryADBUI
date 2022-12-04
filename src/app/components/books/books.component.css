@@ -170,3 +170,9 @@
   white-space  : nowrap;
   width        : 250px;
 }
+
+.desc{
+  height: 60px;
+    overflow: hidden;
+    width: 250px;
+}

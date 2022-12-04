@@ -10,13 +10,14 @@
           <div id="LI_1">
             <div id="DIV_2">
               <figure id="FIGURE_4">
-                <img width="250" height="315px" class="img-responsive lazyMain" style="display: block;" alt=""
+                <img width="250" height="200px" class="img-responsive lazyMain" style="display: block;" alt=""
                   id="IMG_6" src="{{book.image}}">
               </figure>
               <div id="DIV_7">
                 <h2 id="H2_8" class="txt-elipsis">
                   {{book.title}}
                 </h2>
+                <p [title]="book.description" class="desc">{{book.description}}</p>
                 <span id="SPAN_9">
                   {{book.author}}</span>
               </div>
