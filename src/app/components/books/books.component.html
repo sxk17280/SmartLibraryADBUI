@@ -45,7 +45,7 @@
               </mat-form-field>
             </div>
             <div style="margin-bottom: 19px;">
-              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">Issue</button>
+              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">{{ isAdmin ? "Issue" :"Get book" }}  </button>
             </div>
           </div>
         </div>

@@ -9,12 +9,12 @@ import { sharedService } from 'src/app/services/sharedservice.service';
 })
 export class IssuedbooksComponent implements OnInit {
 
-  displayedColumns: string[] = ['bookId', 'checkInDateTime', 'dueDate', 'userName', 'title', 'actions'];
+  displayedColumns: string[] = ['bookId', 'checkInDateTime', 'dueDate', 'userName', 'title', 'fine', 'actions'];
   dataSourceIssuedBooks = [];
   showTable = false;
   users = []
   currentUserData: any;
-  unModifiedBooks=[];
+  unModifiedBooks = [];
   constructor(private sharedService: sharedService, private _snackBar: MatSnackBar) { }
   ngOnInit(): void {
     this.currentUserData = this.sharedService.currentUserData;
@@ -27,13 +27,13 @@ export class IssuedbooksComponent implements OnInit {
       this.users = x;
       if (this.currentUserData.isAdmin) {
         this.sharedService.adminIssuedBooks().subscribe(x => {
-          this.unModifiedBooks=x;
+          this.unModifiedBooks = x;
           this.modifyData(x);
         })
       }
       else {
         this.sharedService.userIssuedBooks(this.currentUserData.userId).subscribe(x => {
-          this.unModifiedBooks=x;
+          this.unModifiedBooks = x;
           this.modifyData(x);
         })
       }
@@ -46,16 +46,17 @@ export class IssuedbooksComponent implements OnInit {
         bookId: element.bookId,
         checkInDateTime: element.bookTransactions.checkInDateTime,
         dueDate: element.bookTransactions.dueDate,
-        userName: !!user ? user.firstName + user.lastName : '',
+        userName: !!user ? user.firstName + ' ' + user.lastName : '',
         title: element.title,
-        actions: true
+        actions: true,
+        fine: element.bookTransactions.fine
       }
       this.dataSourceIssuedBooks.push(model);
     });
     this.showTable = true;
   }
   checkOut(eve) {
-    var currentrecord = this.unModifiedBooks.find(x=>x.bookId==eve.bookId);
+    var currentrecord = this.unModifiedBooks.find(x => x.bookId == eve.bookId);
     var model = {
       TransactionId: currentrecord.bookTransactions.transactionId,
       BookId: currentrecord.bookId,
@@ -70,7 +71,7 @@ export class IssuedbooksComponent implements OnInit {
     }
     this.sharedService.checkOut(model).subscribe(x => {
       this.getData();
-    this.showTable = false;
+      this.showTable = false;
       this._snackBar.open('checkout successfully', 'Dismiss', {
         duration: 2000,
       });
@@ -83,7 +84,7 @@ export class IssuedbooksComponent implements OnInit {
     )
   }
   renew(eve) {
-    var currentrecord = this.unModifiedBooks.find(x=>x.bookId==eve.bookId);
+    var currentrecord = this.unModifiedBooks.find(x => x.bookId == eve.bookId);
     var model = {
       TransactionId: currentrecord.bookTransactions.transactionId,
       BookId: currentrecord.bookId,
@@ -98,7 +99,7 @@ export class IssuedbooksComponent implements OnInit {
     }
     this.sharedService.renew(model).subscribe(x => {
       this.getData();
-    this.showTable = false;
+      this.showTable = false;
       this._snackBar.open('Renewed successfully', 'Dismiss', {
         duration: 2000,
       });

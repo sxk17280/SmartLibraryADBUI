@@ -57,7 +57,7 @@ export class sharedService{
         return this.http.post(url,model,this.headers);
     }
     getCurrentUser(id):Observable<any>{
-        let url=this.host+"api/User/Getuser?id="+id;
+        let url=this.host+"api/User/"+id;
         return this.http.get(url);
     }
     getAuthors():Observable<any>{
@@ -74,7 +74,7 @@ export class sharedService{
     }
     
     userIssuedBooks(id):Observable<any>{
-        let url=this.host+"api/Books/userIssuedBooks?userId="+id;
+        let url=this.host+"api/Books/userIssuedBooks/"+id;
         return this.http.get(url);
     }
     

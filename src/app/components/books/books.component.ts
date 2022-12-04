@@ -80,6 +80,10 @@ export class BooksComponent implements OnInit {
     this.sharedService.getBooks().subscribe(x => {
       this.allBooks = x;
       this.books = x;
+      this.books.forEach(book => {
+        if(!this.isAdmin)
+        book['userSelected'] = true;
+      });
       if (!this.isAdmin) {
         if (!!this.currentUser.booksIssued && this.currentUser.booksIssued.length) {
           this.books = [];
@@ -108,7 +112,7 @@ export class BooksComponent implements OnInit {
   showOptions = false;
   currentSelecteduser: any;
   selectedUserName = '';
-  selectUser(book,userDetails) {
+  selectUser(book, userDetails) {
     book.userSelected = true;
     this.selectedUserName = userDetails.userName;
     console.log(userDetails);
