@@ -72,7 +72,7 @@ export class IssuedbooksComponent implements OnInit {
     this.sharedService.checkOut(model).subscribe(x => {
       this.getData();
       this.showTable = false;
-      this._snackBar.open('checkout successfully', 'Dismiss', {
+      this._snackBar.open('Returned successfully', 'Dismiss', {
         duration: 2000,
       });
     },

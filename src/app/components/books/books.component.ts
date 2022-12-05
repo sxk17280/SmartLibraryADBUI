@@ -131,7 +131,7 @@ export class BooksComponent implements OnInit {
       };
       this.sharedService.checkIn(model).subscribe(x => {
         if (!!x) {
-          this._snackBar.open('CheckedIn Successfully', 'Dismiss', {
+          this._snackBar.open('Issued Successfully', 'Dismiss', {
             duration: 2000,
           });
           if (!this.isAdmin) {
@@ -171,7 +171,7 @@ export class BooksComponent implements OnInit {
       };
       this.sharedService.checkOut(model).subscribe(x => {
         // if(!!x){
-        this._snackBar.open('CheckedOut Successfully', 'Dismiss', {
+        this._snackBar.open('Issued Successfully', 'Dismiss', {
           duration: 2000,
         });
         if (!this.isAdmin) {
