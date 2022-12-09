@@ -10,8 +10,6 @@ export class user {
     Password: string = '';
     isAdmin: boolean = true;
     fine:number=0;
-    booksIssued:Array<bookBasicDetail>=[];
-    renewals:Array<bookBasicDetail>=[];
 }
 export class bookBasicDetail {
     BookId: string = '';

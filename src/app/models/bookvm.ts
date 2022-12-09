@@ -1,4 +1,5 @@
 export class BookVm {
+    BookId:string='';
     Title: string = '';
     Description: string = '';
     Image: string = '';

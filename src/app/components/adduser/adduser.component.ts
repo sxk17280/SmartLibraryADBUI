@@ -20,18 +20,25 @@ export class AdduserComponent implements OnInit {
   ngOnInit(): void {
   }
   addUser() {
-    var newUser = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      address: this.address,
-      city: this.city,
-      phone: this.phone,
-      email: this.email,
-      password: this.password
-    }
+      var newUser = {
+        Id:'332',
+      UserId:'32',
+      FirstName: this.firstName,
+      LastName: this.lastName,
+      Address:  this.address,
+      City:  this.city,
+      Phone: this.phone,
+      Email: this.email,
+      Password:this.password,
+      isAdmin: false,
+      fine:0
+      }
     this.sharedService.addUser(newUser).subscribe(res => {
       console.log(res);
       this._snackBar.open("user added");
+      setTimeout(x=>{
+        window.location.reload()
+      },1500)
     })
   }
 }

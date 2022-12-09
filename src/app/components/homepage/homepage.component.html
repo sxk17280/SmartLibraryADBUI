@@ -1,2 +1,24 @@
-<app-navigationbar></app-navigationbar>
-<app-books></app-books>
+
+<div class="navbar">
+    <app-navigationbar></app-navigationbar>
+</div>
+<div *ngIf="isAdmin">
+    <button mat-raised-button class="float-right addbtn" color="primary">
+      <mat-icon>add_circle</mat-icon><a mat-button routerLink="/addBook">Add Book</a>
+    </button>
+  </div>
+<div *ngIf="showCards">
+    <div class="mat-cards" >
+        <mat-card *ngFor="let data of cardKeys" class="mat-card"> 
+            <div>
+                <h3  class="capitalize">{{data }}</h3>
+            </div>
+            <div>
+                <h4>{{cardsData[data]}}</h4>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<div>
+    <app-books></app-books>
+</div>

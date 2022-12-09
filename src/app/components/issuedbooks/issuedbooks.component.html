@@ -1,0 +1,52 @@
+<div class="navbar">
+  <app-navigationbar></app-navigationbar>
+</div>
+<div *ngIf="showTable" class="main-table">
+  <table mat-table [dataSource]="dataSourceIssuedBooks" class="mat-elevation-z8">
+    <ng-container matColumnDef="bookId">
+      <th mat-header-cell *matHeaderCellDef> Book Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.bookId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkInDateTime">
+      <th mat-header-cell *matHeaderCellDef>CheckIn DateTime</th>
+      <td mat-cell *matCellDef="let element"> {{element.checkInDateTime | date: "short"}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef> Due Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDate | date:"short"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef> User Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fine">
+      <th mat-header-cell *matHeaderCellDef> Fine </th>
+      <td mat-cell *matCellDef="let element"> {{(element.status == 'Issued' ? 0 : element.fine) | currency : "USD"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" *ngIf="element.isActive" class="m-r-10"
+          (click)="renew(element)">Renew</button>
+        <button mat-raised-button color="primary" *ngIf="element.isActive"
+          (click)="checkOut(element)">Return</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = dataIndex;"></tr>
+  </table>
+</div>
+<!-- <div *ngIf="!showTable">
+    <h1>NO Books</h1>
+</div> -->

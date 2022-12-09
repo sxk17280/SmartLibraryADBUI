@@ -14,15 +14,19 @@ export class sharedService{
               .set('Authorization', 'Bearer ' + token)
               .set('Content-Type', 'application/json'); 
         }
+        if(localStorage.getItem('currentuserData')!=''){
+            var userData=localStorage.getItem('currentuserData');
+            this.currentUserData= JSON.parse(userData);
+        }
     }
     currentUserData:any;
     host='https://localhost:7032/';
     public login(loginData:loginVm):Observable<any>{
-        let url=this.host+"api/User";
+        let url=this.host+"api/User/login";
         return this.http.post(url,loginData);
     }
     public addUser(loginData):Observable<any>{
-        let url=this.host+"api/user/AddUser";
+        let url=this.host+"api/user";
         return this.http.post(url,loginData);
     }
     getBooks():Observable<any>{
@@ -53,7 +57,42 @@ export class sharedService{
         return this.http.post(url,model,this.headers);
     }
     getCurrentUser(id):Observable<any>{
-        let url=this.host+"api/User/Getuser?id="+id;
+        let url=this.host+"api/User/"+id;
+        return this.http.get(url);
+    }
+    getAuthors():Observable<any>{
+        let url=this.host+"api/Author";
+        return this.http.get(url);
+    }
+    getBookCategory():Observable<any>{
+        let url=this.host+"api/BookCategory";
+        return this.http.get(url);
+    }
+    adminIssuedBooks():Observable<any>{
+        let url=this.host+"api/Books/adminIssuedBooks";
+        return this.http.get(url);
+    }
+    
+    userIssuedBooks(id):Observable<any>{
+        let url=this.host+"api/Books/userIssuedBooks/"+id;
+        return this.http.get(url);
+    }
+    
+    addcategory(model):Observable<any>{
+        let url=this.host+"api/BookCategory";
+        return this.http.post(url,model,this.headers);
+
+    }
+    addAuthor(model):Observable<any>{
+        let url=this.host+"api/author";
+        return this.http.post(url,model,this.headers);
+    }
+    addBook(model):Observable<any>{
+        let url=this.host+"api/Books";
+        return this.http.post(url,model,this.headers);
+    }
+    getDashBoardData(){
+        let url=this.host+"api/Books/dashboard";
         return this.http.get(url);
     }
 }

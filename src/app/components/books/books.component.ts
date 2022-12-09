@@ -65,9 +65,9 @@ export class BooksComponent implements OnInit {
       var res = x;
       res.forEach(element => {
         if (!element.isAdmin) {
-          if (!!element.booksIssued) {
-            this.users.push(element);
-          }
+          //  if (!!element.booksIssued) {
+          this.users.push(element);
+          //  }
         }
       });
     })
@@ -80,6 +80,10 @@ export class BooksComponent implements OnInit {
     this.sharedService.getBooks().subscribe(x => {
       this.allBooks = x;
       this.books = x;
+      this.books.forEach(book => {
+        if(!this.isAdmin)
+        book['userSelected'] = true;
+      });
       if (!this.isAdmin) {
         if (!!this.currentUser.booksIssued && this.currentUser.booksIssued.length) {
           this.books = [];
@@ -108,26 +112,26 @@ export class BooksComponent implements OnInit {
   showOptions = false;
   currentSelecteduser: any;
   selectedUserName = '';
-  selectUser(userDetails) {
+  selectUser(book, userDetails) {
+    book.userSelected = true;
     this.selectedUserName = userDetails.userName;
     console.log(userDetails);
     this.currentSelecteduser = this.users.find(x => x.userId == userDetails.value);
   }
   checkIn(book) {
     if (!!this.currentSelecteduser) {
-      if (!!this.currentSelecteduser.booksIssued && this.currentSelecteduser.booksIssued.length < 3) {
-        var model = {
-          BookId: book.bookId,
-          UserId: this.currentSelecteduser.userId,
-          CheckInDateTime: '2022-11-18T17:56:23.028+00:00',
-          CheckOutDateTime: '2022-11-18T17:56:23.028+00:00',
-          DueDate: '2022-11-18T17:56:23.028+00:00',
-          Penalty: 0,
-          Status: 'Not Available'
-        };
-        this.sharedService.checkIn(model).subscribe(x => {
-          // if(!!x){
-          this._snackBar.open('CheckedIn Successfully', 'Dismiss', {
+      var model = {
+        BookId: book.bookId,
+        UserId: this.currentSelecteduser.userId,
+        CheckInDateTime: '2022-11-18T17:56:23.028+00:00',
+        CheckOutDateTime: '2022-11-18T17:56:23.028+00:00',
+        DueDate: '2022-11-18T17:56:23.028+00:00',
+        Penalty: 0,
+        Status: 'Not Available'
+      };
+      this.sharedService.checkIn(model).subscribe(x => {
+        if (!!x) {
+          this._snackBar.open('Issued Successfully', 'Dismiss', {
             duration: 2000,
           });
           if (!this.isAdmin) {
@@ -139,14 +143,14 @@ export class BooksComponent implements OnInit {
           }
           this.selectedUserName = '';
           this.currentSelecteduser = undefined;
-          // }
-        })
-      }
-      else {
-        this._snackBar.open('Already 3 books taken', 'Dismiss', {
-          duration: 2000,
-        });
-      }
+        }
+      },
+        error => {
+          this._snackBar.open('LIMIT_EXCEEDED', 'Dismiss', {
+            duration: 2000,
+          });
+        },)
+
     }
     else {
       this._snackBar.open('select user', 'Dismiss', {
@@ -167,7 +171,7 @@ export class BooksComponent implements OnInit {
       };
       this.sharedService.checkOut(model).subscribe(x => {
         // if(!!x){
-        this._snackBar.open('CheckedOut Successfully', 'Dismiss', {
+        this._snackBar.open('Issued Successfully', 'Dismiss', {
           duration: 2000,
         });
         if (!this.isAdmin) {

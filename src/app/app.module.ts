@@ -24,8 +24,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { sharedService } from './services/sharedservice.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
+import { AuthorsComponent } from './components/authors/authors.component';
+import { UsersComponent } from './components/users/users.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import { AddbookComponent } from './components/addbook/addbook.component';
+import { AuthordialogComponent } from './components/authordialog/authordialog.component';
+import { CategorydialogComponent } from './components/categorydialog/categorydialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +42,15 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HomepageComponent,
     NavigationbarComponent,
     AdduserComponent,
-    BooksComponent
+    BooksComponent,
+    AuthorsComponent,
+    UsersComponent,
+    CategoriesComponent,
+    IssuedbooksComponent,
+    AddbookComponent,
+    AuthordialogComponent,
+    CategorydialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +70,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,MatTableModule,MatMenuModule,MatDialogModule
+    
   ],
   providers: [sharedService],
   bootstrap: [AppComponent]

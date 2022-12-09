@@ -1,57 +1,6 @@
-<!-- 
-<div class="products-div">
-    <div *ngFor="let book of books">
-        <div class="total-card" *ngIf="showBooks">
-            <div > 
-              <mat-card class="example-card">
-                
-                  <img mat-card-image src="{{book.Image}}" alt="Photo of a Shiba Inu" >
-                <mat-card-content>
-                    <p>
-                         <a routerLink="/detail/{{book.Id}}">
-                           <span class="badge"> {{book.Title}}{{book.Id}}</span>
-                        
-                        </a>
-                    </p>
-                     </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-raised-button color="primary" routerLink='/homepage'>Checkout</button>
-                    </mat-card-actions>
-                  </mat-card>   
-            </div>
-          </div>
-        </div>
-    </div>
-     -->
-
-
 <div class="main-div">
-  <div style="height: 35px;background-color: #f5f5f5;padding-top: 21px;">
-    <div class="strike"  *ngIf="isAdmin" ><span
-        style="font-size: 36px;color: #555;-webkit-font-smoothing: antialiased;font-family: 'Raleway';    font-weight: 700;">
-        Admin Dashboard</span>
-    </div>
-    <div class="strike"  *ngIf="!isAdmin" ><span
-      style="font-size: 36px;color: #555;-webkit-font-smoothing: antialiased;font-family: 'Raleway';    font-weight: 700;">
-      Student Dashboard</span>
-  </div>
-    <hr class="hr_new">
-  </div>
-  <div *ngIf="isAdmin" >
-    <mat-form-field appearance="outline" class="users-list" >
-      <mat-label>Select User</mat-label>
-
-      <mat-select (selectionChange)="selectUser($event)" [(ngModel)]="selectedUserName">
-        <mat-option *ngFor="let user of users" [value]="user.userId">
-          {{user.firstName}}
-        </mat-option >
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div *ngIf="!isAdmin"> 
-    <mat-slide-toggle  style="float:right;margin: 10px;" ngModel name="showMyBooks" (change)="toggleChanged($event)">{{showBooksMessage}}</mat-slide-toggle>
-
-  </div>
+ 
+  
 
   <div class="products-div">
     <div *ngFor="let book of books" class="book-div">
@@ -61,56 +10,45 @@
           <div id="LI_1">
             <div id="DIV_2">
               <figure id="FIGURE_4">
-                <img width="250" height="315px" class="img-responsive lazyMain" style="display: block;" alt=""
+                <img width="250" height="200px" class="img-responsive lazyMain" style="display: block;" alt=""
                   id="IMG_6" src="{{book.image}}">
               </figure>
               <div id="DIV_7">
-                <h2 id="H2_8">
+                <h2 id="H2_8" class="txt-elipsis">
                   {{book.title}}
                 </h2>
+                <p [title]="book.description" class="desc">{{book.description}}</p>
                 <span id="SPAN_9">
                   {{book.author}}</span>
               </div>
               <div id="DIV_17">
                 <div id="DIV_18">
                   <a id="A_19"
-                    ng-click="showFullData('059655558X','http://books.google.co.in/books?id=1PgCCVryjOQC&amp;printsec=frontcover&amp;dq=isbn:059655558X&amp;hl=&amp;cd=1&amp;source=gbs_api','basic');"><span class="f_detail">{{book.category}}</span></a>
-                  <a class="A_20" href="" style="background: green;
-color: white;"><span class="f_available">{{book.status}}</span>
-                    (1)</a>
+                    ng-click="showFullData('059655558X','http://books.google.co.in/books?id=1PgCCVryjOQC&amp;printsec=frontcover&amp;dq=isbn:059655558X&amp;hl=&amp;cd=1&amp;source=gbs_api','basic');"><span
+                      class="f_detail">{{book.category}}</span></a>
+                  <a class="A_20" href="#"><span class="f_available">{{book.status}}</span>
+                  </a>
                 </div>
               </div>
             </div>
 
           </div>
 
-          <div class="check-buttons" >
-            <div>
-              <button mat-raised-button color="primary" *ngIf="book.isAvailable"  (click)="checkIn(book)">Check In</button>
+          <div class="check-buttons">
+            <div *ngIf="isAdmin">
+              <mat-form-field appearance="outline" class="users-list">
+                <mat-label>Select User</mat-label>
+                <mat-select (selectionChange)="selectUser(book,$event)">
+                  <mat-option *ngFor="let user of users" [value]="user.userId">
+                    {{user.firstName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-            <div>
-              <button mat-raised-button color="primary" *ngIf="!book.isAvailable"  (click)="renew(book)">Renew</button>
+            <div style="margin-bottom: 19px;">
+              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">{{ isAdmin ? "Issue" :"Get book" }}  </button>
             </div>
-            <div>
-              <button mat-raised-button color="accent"  (click)="checkOut(book)">Check out</button>
-            </div>
-           
           </div>
-
-          <!-- <div class="check-buttons" *ngIf="!isAdmin">
-            <div>
-              <button mat-raised-button color="primary" *ngIf="book.isAvailable"  (click)="checkInUser(book)">Check In</button>
-            </div>
-            <div>
-              <button mat-raised-button color="primary" *ngIf="!book.isAvailable"  (click)="renewUser(book)">Renew</button>
-            </div>
-            <div>
-              <button mat-raised-button color="accent"  (click)="checkOutUser(book)">Check out</button>
-            </div>
-           
-          </div> -->
-
-
         </div>
       </mat-card>
     </div>
