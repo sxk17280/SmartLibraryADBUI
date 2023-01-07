@@ -21,7 +21,8 @@ showCards=false;
     if(this.isAdmin){
       this.sharedService.getDashBoardData().subscribe(x=>{
         this.cardsData=x;
-        this.cardKeys=Object.keys(this.cardsData);
+        this.cardKeys=Object.keys(this.cardsData).filter(x=>x!='totalFine');
+        console.log(this.cardKeys);
         this.showCards=true;
       })
     }

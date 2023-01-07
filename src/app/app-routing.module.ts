@@ -9,6 +9,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
 import { UsersComponent } from './components/users/users.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{ path: '', component: LoginpageComponent, pathMatch: 'full' },
 { path: 'login', component: LoginpageComponent },
@@ -20,7 +21,7 @@ const routes: Routes = [{ path: '', component: LoginpageComponent, pathMatch: 'f
 { path: 'categories', component: CategoriesComponent },
 { path: 'issuedBooks', component: IssuedbooksComponent },
 { path: 'addBook', component: AddbookComponent },
-
+{ path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

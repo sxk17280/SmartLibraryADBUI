@@ -11,7 +11,7 @@ import { sharedService } from 'src/app/services/sharedservice.service';
 export class UsersComponent implements OnInit {
 
   constructor(private sharedService: sharedService, private _snackBar: MatSnackBar,private router: Router) { }
-  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'address','city','isAdmin','email','phone','fine'];
+  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'address','city','isAdmin','email','phone'];
   dataSourceUsers =[] ;
   users=[];
   showTable=false;

@@ -9,7 +9,7 @@ import { sharedService } from 'src/app/services/sharedservice.service';
 })
 export class IssuedbooksComponent implements OnInit {
 
-  displayedColumns: string[] = ['bookId', 'checkInDateTime', 'dueDate', 'userName', 'title', 'fine', 'actions'];
+  displayedColumns: string[] = ['bookId', 'checkInDateTime', 'dueDate', 'userName', 'title', 'fine','status', 'actions'];
   dataSourceIssuedBooks = [];
   showTable = false;
   users = []
@@ -49,8 +49,11 @@ export class IssuedbooksComponent implements OnInit {
         userName: !!user ? user.firstName + ' ' + user.lastName : '',
         title: element.title,
         actions: true,
-        fine: element.bookTransactions.fine
+        fine: element.bookTransactions.fine,
+        isActive: element.bookTransactions.isActive,
+        status: element.bookTransactions.status
       }
+      console.log(model)
       this.dataSourceIssuedBooks.push(model);
     });
     this.showTable = true;

@@ -34,6 +34,7 @@ import { AddbookComponent } from './components/addbook/addbook.component';
 import { AuthordialogComponent } from './components/authordialog/authordialog.component';
 import { CategorydialogComponent } from './components/categorydialog/categorydialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     IssuedbooksComponent,
     AddbookComponent,
     AuthordialogComponent,
-    CategorydialogComponent
+    CategorydialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
