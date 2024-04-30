@@ -48,6 +48,11 @@ export class sharedService{
         let url=this.host+"api/Books/Checkin";
         return this.http.post(url,model,this.headers);
     }
+    reserveBook(model):Observable<any>{
+        let url=this.host+"api/Books/ReserveBook";
+        return this.http.post(url,model,this.headers);
+    }
+    
     checkOut(model):Observable<any>{
         let url=this.host+"api/Books/Checkout";
         return this.http.post(url,model,this.headers);
@@ -95,4 +100,11 @@ export class sharedService{
         let url=this.host+"api/Books/dashboard";
         return this.http.get(url);
     }
+    
+  uploadFile(file: File,id): Promise<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    return this.http.post(this.host+'api/Books/upload?id='+id, formData).toPromise();
+  }
 }

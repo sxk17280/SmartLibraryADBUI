@@ -21,6 +21,7 @@ export class AddbookComponent implements OnInit {
   isAvailable = true
   categories=[];
   authors=[];
+  selectedFile: File | undefined;
   ngOnInit(): void {
     this.sharedService.getBookCategory().subscribe(x => {
       this.categories= x.map(x=>x.categoryName);
@@ -40,18 +41,37 @@ export class AddbookComponent implements OnInit {
       PublishedYear: this.PublishedYear,
       Author: this.Author,
       isAvailable: this.isAvailable,
-
     }
     this.sharedService.addBook(model).subscribe(x => {
       this._snackBar.open("Book added");
-      setTimeout(x=>{
-        window.location.reload()
-      },1500)
+      this.uploadFile(x.bookId);
     },error => {
       this._snackBar.open('Some thing went wrong', 'Dismiss', {
         duration: 1500,
       });
     })
    
+  }
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadFile(id): void {
+    if (this.selectedFile) {
+      this.sharedService.uploadFile(this.selectedFile,id)
+        .then(response => {
+          setTimeout(x=>{
+            window.location.reload()
+          },1500)
+          console.log('File uploaded successfully:', response);
+          // Handle success, such as showing a success message
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          // Handle error, such as showing an error message
+        });
+    } else {
+      // Handle no file selected
+    }
   }
 }

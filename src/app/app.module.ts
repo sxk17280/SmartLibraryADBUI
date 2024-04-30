@@ -28,13 +28,18 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { UsersComponent } from './components/users/users.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { IssuedbooksComponent } from './components/issuedbooks/issuedbooks.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTableModule} from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { AuthordialogComponent } from './components/authordialog/authordialog.component';
 import { CategorydialogComponent } from './components/categorydialog/categorydialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
+import { ContentViewerDialogComponent } from './components/content-viewer-dialog/content-viewer-dialog.component';
+import { SafeResourceUrlPipe } from './components/content-viewer-dialog/SafeResourceUrlPipe';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +55,9 @@ import { HomeComponent } from './home/home.component';
     AddbookComponent,
     AuthordialogComponent,
     CategorydialogComponent,
-    HomeComponent
+    HomeComponent,
+    ContentViewerDialogComponent,
+    SafeResourceUrlPipe 
   ],
   imports: [
     BrowserModule,
@@ -70,10 +77,16 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatSlideToggleModule,MatTableModule,MatMenuModule,MatDialogModule
-    
+    MatSlideToggleModule,
+    MatTableModule,
+    MatMenuModule,
+    MatDialogModule,
+    NgxChartsModule,
+    MatSidenavModule,
+    MatListModule
+     
   ],
   providers: [sharedService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

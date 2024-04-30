@@ -17,4 +17,9 @@ mat-card{
 .addbtn {
     float       : right;
     margin-right: 43px;
+    margin: 10px;
+  }
+  .graph{
+    width: 91.5%;
+    margin-left: 1%;
   }

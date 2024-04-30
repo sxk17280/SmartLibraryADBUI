@@ -1,5 +1,5 @@
 {
-  "name": "smartlibraryui",
+  "name": "e_smartlibraryui",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,12 +14,13 @@
     "@angular/cdk": "^12.2.13",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
-    "@angular/core": "~12.2.0",
+    "@angular/core": "~12.2.0", 
     "@angular/forms": "~12.2.0",
     "@angular/material": "^12.2.13",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@swimlane/ngx-charts": "^20.5.0",
     "bootstrap": "^5.2.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

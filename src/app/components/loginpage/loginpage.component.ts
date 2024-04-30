@@ -3,11 +3,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { loginVm } from 'src/app/models/user';
 import { sharedService } from 'src/app/services/sharedservice.service';
-
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'app-loginpage',
   templateUrl: './loginpage.component.html',
-  styleUrls: ['./loginpage.component.css']
+  styleUrls: ['./loginpage.component.css'],
+  animations: [
+    trigger('fadeInAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class LoginpageComponent implements OnInit {
 

@@ -10,14 +10,12 @@ export class NavigationbarComponent implements OnInit {
 
   constructor(private sharedService: sharedService) { }
   currentUser: any;
-  isAdmin = false;
-  fine=0;
+  roleType = "Admin";
   ngOnInit(): void {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentuserData'));
 
-    this.isAdmin = this.currentUser.isAdmin;
-    this.fine=this.currentUser.fine;
+    this.roleType = this.currentUser.role;
   }
   logout() {
     localStorage.clear();

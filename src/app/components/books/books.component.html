@@ -20,6 +20,8 @@
                 <p [title]="book.description" class="desc">{{book.description}}</p>
                 <span id="SPAN_9">
                   {{book.author}}</span>
+                  <span id="SPAN_9">
+                    {{book.fileType}}</span>
               </div>
               <div id="DIV_17">
                 <div id="DIV_18">
@@ -35,7 +37,7 @@
           </div>
 
           <div class="check-buttons">
-            <div *ngIf="isAdmin">
+            <div *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">
               <mat-form-field appearance="outline" class="users-list">
                 <mat-label>Select User</mat-label>
                 <mat-select (selectionChange)="selectUser(book,$event)">
@@ -46,7 +48,13 @@
               </mat-form-field>
             </div>
             <div style="margin-bottom: 19px;">
-              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">{{ isAdmin ? "Issue" :"Get book" }}  </button>
+              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="!book.isAvailable"  [disabled]="!book.userSelected" (click)="reserveBook(book)">{{ "Reserve"}}  </button>
+            </div>
+            <div style="margin-bottom: 19px;">
+              <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable && book.userSelected" [disabled]="!book.userSelected" (click)="checkIn(book)">
+                {{ (roleType == 'Admin' || roleType == 'Librarian') ? 'Issue' : 'Get book' }}
+              </button>
+              <!-- <button mat-raised-button style="padding: 7px;" color="primary" *ngIf="book.isAvailable"  [disabled]="!book.userSelected" (click)="checkIn(book)">{{ *ngIf="this.roleType == 'Admin' || this.roleType == 'Librarian'" ? "Issue" :"Get book" }}  </button> -->
             </div>
           </div>
         </div>

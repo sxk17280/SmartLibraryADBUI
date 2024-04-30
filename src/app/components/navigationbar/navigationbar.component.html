@@ -1,22 +1,16 @@
 <p>
   <mat-toolbar>
-    <h1 routerLink="/homepage" class="pointer"><a mat-button></a>Smart Library Manager</h1>
+    <h1 routerLink="/homepage" class="pointer"><a mat-button></a>E-Library Manager</h1>
     <span class="m-l-10">
-
       <a routerLinkActive="is-active" mat-button routerLink="/homepage">Dashboard</a>
-      <a routerLinkActive="is-active" mat-button routerLink="/users" *ngIf="this.isAdmin">Users</a>
-      <a routerLinkActive="is-active" mat-button routerLink="/authors" *ngIf="this.isAdmin">Authors</a>
-      <a routerLinkActive="is-active" mat-button routerLink="/categories" *ngIf="this.isAdmin">Categories</a>
       <a routerLinkActive="is-active" mat-button routerLink="/issuedBooks">Issued Books</a>
+      <a routerLinkActive="is-active" mat-button routerLink="/categories" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Categories</a>
+      <a routerLinkActive="is-active" mat-button routerLink="/authors" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Authors</a>
+      <a routerLinkActive="is-active" mat-button routerLink="/users" *ngIf="this.roleType=='Admin'">Users</a>
+
     </span>
     <span class="example-spacer"></span>
     <div style="display: flex;align-items: center;">
-      <!-- <span class="m-l-10" *ngIf="!this.isAdmin"><a mat-button>Fine : {{fine}}$</a>
-        </span> -->
-      <!-- <button mat-icon-button *ngIf="this.isAdmin" class="example-icon m-right"
-        aria-label="Example icon-button with share icon" routerLink="/addUser">
-        Add user
-      </button> -->
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon pointer"
         (click)="logout()" routerLink="/login">
         Logout

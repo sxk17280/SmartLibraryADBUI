@@ -1,0 +1,13 @@
+.main-div {
+  height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-div{
+    height: 500px !important;
+}
+.main-div-pdf{
+    height: 800px !important;
+}

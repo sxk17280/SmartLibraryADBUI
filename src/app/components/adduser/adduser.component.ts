@@ -31,7 +31,6 @@ export class AdduserComponent implements OnInit {
       Email: this.email,
       Password:this.password,
       isAdmin: false,
-      fine:0
       }
     this.sharedService.addUser(newUser).subscribe(res => {
       console.log(res);

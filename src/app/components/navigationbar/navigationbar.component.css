@@ -19,3 +19,12 @@ mat-toolbar {
 .is-active {
   background-color: #543838d1 !important;
 }
+/* Adjust the height of the sidenav container to fit the viewport */
+.mat-sidenav-container {
+  height: 100vh;
+}
+
+/* Prevent scrolling on the sidenav content */
+.mat-sidenav-content {
+  overflow: hidden;
+}

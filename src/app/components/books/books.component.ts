@@ -18,23 +18,23 @@ export class BooksComponent implements OnInit {
   showBooks = false;
   users: any = [];
   currentUser: any;
-  isAdmin = false;
+  roleType = "Admin";
   showBooksMessage = "Show All books";
   ngOnInit(): void {
     console.log(this.currentUser);
     this.currentUser = JSON.parse(localStorage.getItem('currentuserData'));
 
-    this.isAdmin = this.currentUser.isAdmin;
+    this.roleType = this.currentUser.role;
     this.getUsers();
     this.getBooks();
-    if (!this.isAdmin) {
+    if (this.roleType=='User') {
       this.currentSelecteduser = this.currentUser;
     }
     this.showBooks = true;
   }
 
   setCurrentUser() {
-    if (!this.isAdmin) {
+    if ( this.roleType == "User") {
       this.sharedService.getCurrentUser(this.currentSelecteduser.userId).subscribe(x => {
         localStorage.removeItem('currentuserData');
         localStorage.setItem('currentuserData', JSON.stringify(x));
@@ -64,7 +64,7 @@ export class BooksComponent implements OnInit {
     this.sharedService.getUsers().subscribe(x => {
       var res = x;
       res.forEach(element => {
-        if (!element.isAdmin) {
+        if (element.role=="User") {
           //  if (!!element.booksIssued) {
           this.users.push(element);
           //  }
@@ -81,10 +81,10 @@ export class BooksComponent implements OnInit {
       this.allBooks = x;
       this.books = x;
       this.books.forEach(book => {
-        if(!this.isAdmin)
+        if( this.roleType == "User")
         book['userSelected'] = true;
       });
-      if (!this.isAdmin) {
+      if ( this.roleType == "User") {
         if (!!this.currentUser.booksIssued && this.currentUser.booksIssued.length) {
           this.books = [];
           x.forEach(element => {
@@ -118,6 +118,42 @@ export class BooksComponent implements OnInit {
     console.log(userDetails);
     this.currentSelecteduser = this.users.find(x => x.userId == userDetails.value);
   }
+
+  reserveBook(book){
+    if (!!this.currentSelecteduser) {
+      var model = {
+        BookId: book.bookId,
+        UserId: this.currentSelecteduser.userId,
+      };
+      this.sharedService.reserveBook(model).subscribe(x => {
+        if (!!x) {
+          this._snackBar.open('Reserved Successfully', 'Dismiss', {
+            duration: 2000,
+          });
+          if ( this.roleType == "User") {
+            this.setCurrentUser();
+          }
+          else {
+            this.getBooks();
+            this.getUsers();
+          }
+          this.selectedUserName = '';
+          this.currentSelecteduser = undefined;
+        }
+      },
+        error => {
+          this._snackBar.open(error.error, 'Dismiss', {
+            duration: 2000,
+          });
+        },)
+
+    }
+    else {
+      this._snackBar.open('select user', 'Dismiss', {
+        duration: 2000,
+      });
+    }
+  }
   checkIn(book) {
     if (!!this.currentSelecteduser) {
       var model = {
@@ -134,7 +170,7 @@ export class BooksComponent implements OnInit {
           this._snackBar.open('Issued Successfully', 'Dismiss', {
             duration: 2000,
           });
-          if (!this.isAdmin) {
+          if ( this.roleType == "User") {
             this.setCurrentUser();
           }
           else {
@@ -174,7 +210,7 @@ export class BooksComponent implements OnInit {
         this._snackBar.open('Issued Successfully', 'Dismiss', {
           duration: 2000,
         });
-        if (!this.isAdmin) {
+        if ( this.roleType == "User") {
           this.setCurrentUser();
         }
         else {
@@ -210,7 +246,7 @@ export class BooksComponent implements OnInit {
           this._snackBar.open('Renewed Successfully', 'Dismiss', {
             duration: 2000,
           });
-          if (!this.isAdmin) {
+          if ( this.roleType == "User") {
             this.setCurrentUser();
           }
           else {

@@ -1,24 +1,38 @@
-
-<div class="navbar">
+<div class="row">
+  <div class="navbar col-sm-3">
     <app-navigationbar></app-navigationbar>
-</div>
-<div *ngIf="isAdmin">
-    <button mat-raised-button class="float-right addbtn" color="primary">
-      <mat-icon>add_circle</mat-icon><a mat-button routerLink="/addBook">Add Book</a>
-    </button>
   </div>
-<div *ngIf="showCards">
-    <div class="mat-cards" >
-        <mat-card *ngFor="let data of cardKeys" class="mat-card"> 
-            <div>
-                <h3  class="capitalize">{{data }}</h3>
-            </div>
-            <div>
-                <h4>{{cardsData[data]}}</h4>
-            </div>
-        </mat-card>
+  <div class="col-sm-9">
+    <div *ngIf="this.roleType == 'Admin' || this.roleType == 'Librarian'">
+      <button mat-raised-button class="float-right addbtn mt-9" color="primary">
+        <mat-icon>add_circle</mat-icon
+        ><a mat-button routerLink="/addBook">Add Book</a>
+      </button>
     </div>
+    <div *ngIf="showCards">
+     <mat-card class="graph">
+      <ngx-charts-bar-vertical
+      [view]="[700, 400]"
+      [scheme]="colorScheme"
+      [results]="chartData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [legendPosition]="'right'"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'Data'"
+      [yAxisLabel]="'Count'"
+    >
+    </ngx-charts-bar-vertical>
+     </mat-card>
+    </div>
+    <div>
+      <app-books></app-books>
+    </div>
+  </div>
 </div>
-<div>
-    <app-books></app-books>
-</div>
+
+
+
+

@@ -11,19 +11,22 @@ export class HomepageComponent implements OnInit {
   constructor(private sharedService: sharedService) { }
 cardsData:any;
 currentUser;
-isAdmin=false;
+roleType = "Admin";
 cardKeys=[];
 showCards=false;
+chartData: any[] = [];
+colorScheme = { domain:  ['#7cb5ec', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'] };
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('currentuserData'));
-
-    this.isAdmin = this.currentUser.isAdmin;
-    if(this.isAdmin){
+    this.roleType = this.currentUser.role;
+    if(this.roleType=="Admin"){
       this.sharedService.getDashBoardData().subscribe(x=>{
-        this.cardsData=x;
+        this.cardsData = x;
+
         this.cardKeys=Object.keys(this.cardsData).filter(x=>x!='totalFine');
-        console.log(this.cardKeys);
-        this.showCards=true;
+
+        this.chartData = this.cardKeys.map(key => ({ name: key, value: this.cardsData[key] }));
+        this.showCards = true;
       })
     }
     
