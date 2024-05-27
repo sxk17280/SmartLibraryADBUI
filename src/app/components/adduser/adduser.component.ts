@@ -17,6 +17,7 @@ export class AdduserComponent implements OnInit {
   phone: string = '';
   email: string = '';
   password: string = '';
+  zipCode:string='';
   ngOnInit(): void {
   }
   addUser() {
@@ -31,6 +32,8 @@ export class AdduserComponent implements OnInit {
       Email: this.email,
       Password:this.password,
       isAdmin: false,
+      zipCode:this.zipCode
+
       }
     this.sharedService.addUser(newUser).subscribe(res => {
       console.log(res);

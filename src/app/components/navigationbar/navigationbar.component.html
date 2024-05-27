@@ -4,10 +4,10 @@
     <span class="m-l-10">
       <a routerLinkActive="is-active" mat-button routerLink="/homepage">Dashboard</a>
       <a routerLinkActive="is-active" mat-button routerLink="/issuedBooks">Issued Books</a>
-      <a routerLinkActive="is-active" mat-button routerLink="/categories" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Categories</a>
-      <a routerLinkActive="is-active" mat-button routerLink="/authors" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Authors</a>
+      <a routerLinkActive="is-active" mat-button routerLink="/categories" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Genere</a>
+      <a routerLinkActive="is-active" mat-button routerLink="/authors" *ngIf="this.roleType=='Admin'||this.roleType=='Librarian'">Publisher</a>
       <a routerLinkActive="is-active" mat-button routerLink="/users" *ngIf="this.roleType=='Admin'">Users</a>
-
+      <a routerLinkActive="is-active" mat-button routerLink="/users" *ngIf="this.roleType=='Admin'">Librarians</a>
     </span>
     <span class="example-spacer"></span>
     <div style="display: flex;align-items: center;">

@@ -39,6 +39,12 @@
                 </div>
                 <div class="col-sm-6 w-100">
                     <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Zip Code</mat-label>
+                        <input matInput [(ngModel)]="zipCode" placeholder="Zip Code" [ngModelOptions]="{standalone: true}">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 w-100">
+                    <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Phone</mat-label>
                         <input matInput [(ngModel)]="phone" placeholder="phone" [ngModelOptions]="{standalone: true}">
                     </mat-form-field>
